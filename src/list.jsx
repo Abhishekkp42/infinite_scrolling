@@ -5,6 +5,7 @@ import {nanoid} from "nanoid";
 const List = () => {
     const [listItems, setListItems] = useState(Array.from(Array(25).keys(), n => n + 1));
     const [isFetching, setIsFetching] = useState(false);
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -16,7 +17,6 @@ const List = () => {
         console.log('Fetch more list items!');
       }
       useEffect(() => {
-       // if (!isFetching) return;
         fetchMoreListItems();
       }, [isFetching]);
 
@@ -26,6 +26,7 @@ const List = () => {
           setIsFetching(false);
         }, 5000);
       }
+
     return (
       <>
         <ul className="list-group mb-2">
