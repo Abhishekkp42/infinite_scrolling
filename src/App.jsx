@@ -1,45 +1,47 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import logo from './logo.svg';
+import './App.css';
+import InfiniteScroll from 'react-infinite-scroller';
+import { useState } from 'react';
+import List from './list';
+
+const style = {
+  height: 20,
+  border: "1px solid green",
+  margin: 6,
+  padding: 8
+};
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const arr = [];
+  const [start,setStart] = useState(1);
+  const [end,setEnd] = useState(25);
+  console.log('arr:', arr)
+  const [items,setItems] = useState(new Array(25).fill(0));
+
+
+  console.log('items:', items)
+
+  const loadFunc = () => {
+    console.log("Hi")
+    setTimeout(() => {
+      
+    setItems(items.push(new Array(25)));  
+    setStart(start)
+    }, 1000);
+  };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+        <div className="container">
+        <div className="row">
+          <div className="col-6 justify-content-center my-5">
+          <List/>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
